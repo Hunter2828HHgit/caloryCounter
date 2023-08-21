@@ -10,11 +10,10 @@ Widget::Widget(QWidget *parent)
     m_speed = ui->speed->value();
     m_weight = ui->weight->value();
     m_time = ui->time->value();
-    connect(ui->speed, SIGNAL(valueChanged(double)), this, SLOT(change_speed(double)));
-    connect(ui->weight, SIGNAL(valueChanged(double)), this, SLOT(change_weight(double)));
-    connect(ui->time, SIGNAL(valueChanged(double)), this, SLOT(change_time(double)));
+    connect(ui->speed, &QDoubleSpinBox::valueChanged, this, &Widget::change_speed);
+    connect(ui->weight, &QDoubleSpinBox::valueChanged, this, &Widget::change_weight);
+    connect(ui->time, &QDoubleSpinBox::valueChanged, this, &Widget::change_time);
 
-    // connect(this, SIGNAL(calory_count_changed()), ui->caloryCountLabel, SLOT(setText(QString::number(calory_count))));
     connect(this, &Widget::calory_count_changed, [=](){
         ui->caloryCountLabel->setText(QString::number(calory_count));
     });
